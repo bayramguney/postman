@@ -1,0 +1,517 @@
+{
+	"info": {
+		"_postman_id": "982cc252-7495-4e7f-bcf9-853946bf0c6f",
+		"name": "orange",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "63862b50-291a-42ac-9ccc-1bb1d6da8681",
+						"exec": [
+							"console.log(\"system ok\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "348bf7e5-c66e-4850-bbbd-acc324ff2916",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"bg\",\r\n  \"email\": \"bg@gmail.com\",\r\n  \"password\": \"abc\",\r\n  \"active\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "166.62.36.207/syntaxapi/api/createUser.php",
+					"host": [
+						"166",
+						"62",
+						"36",
+						"207"
+					],
+					"path": [
+						"syntaxapi",
+						"api",
+						"createUser.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create token",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a28163cb-ac82-4901-8943-29c240308792",
+						"exec": [
+							"console.log(\"token created\")"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa2efecb-7768-4f75-a734-4d98cb49ebd8",
+						"exec": [
+							"pm.test(\"token\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"token\");\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Transfer-Encoding",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"bg@gmail.com\",\r\n  \"password\": \"abc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "166.62.36.207/syntaxapi/api/generateToken.php",
+					"host": [
+						"166",
+						"62",
+						"36",
+						"207"
+					],
+					"path": [
+						"syntaxapi",
+						"api",
+						"generateToken.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get the all  employees",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e302e4b0-7a3c-4f2f-9d2e-d36a949e1260",
+						"exec": [
+							"console.log(\"retrieving all employee\")"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2c553b16-9862-46da-be04-175bd4921621",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTE0NzM2NzYsImlzcyI6ImxvY2FsaG9zdCIsImV4cCI6MTU5MTU4ODg3NiwidXNlcklkIjoiMTU3In0.Sc7ibY61rzzS51OXr5_c2KLEn7B7TRDl65eWaS0OIN8",
+						"type": "text"
+					},
+					{
+						"key": "Content-Transfer-Encoding",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "166.62.36.207/syntaxapi/api/getAllEmployees.php",
+					"host": [
+						"166",
+						"62",
+						"36",
+						"207"
+					],
+					"path": [
+						"syntaxapi",
+						"api",
+						"getAllEmployees.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOneEmployee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "34ab4d5e-2bf5-4c9b-965c-fa1cea55039e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}{{getOne employee}}?employee_id=10315",
+					"host": [
+						"{{baseUrl}}{{getOne employee}}"
+					],
+					"query": [
+						{
+							"key": "employee_id",
+							"value": "10315"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getjobtitle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b1569eac-0027-4230-a42f-cc717814e290",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Job Title List\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}{{getJobTitle}}",
+					"host": [
+						"{{baseUrl}}{{getJobTitle}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEmployeeStatus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1a0f385-7a15-4fdc-a04b-21852fc15c77",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Employee Status List\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}{{getEmployeeStatus}}",
+					"host": [
+						"{{baseUrl}}{{getEmployeeStatus}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createEmployee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b847e62-5f0d-49df-a0cb-452de01ee3ff",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Entry Created\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"emp_firstname\": \"abc\",\r\n  \"emp_lastname\": \"gullil\",\r\n  \"emp_middle_name\": \"st\",\r\n  \"emp_gender\": \"1\",\r\n  \"emp_birthday\": \"2020-06-08\",\r\n  \"emp_status\": \"Full Time W2\",\r\n  \"emp_job_title\": \"Cloud Architect\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}{{createEmployee}}",
+					"host": [
+						"{{baseUrl}}{{createEmployee}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getthecratedemployee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9e9d447-d36c-4e8f-8823-a35cac03fa80",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}{{getOne employee}}?employee_id={{CreatedEmployeeID}}",
+					"host": [
+						"{{baseUrl}}{{getOne employee}}"
+					],
+					"query": [
+						{
+							"key": "employee_id",
+							"value": "{{CreatedEmployeeID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateEmploye",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"employee_id\": \"{{CreatedEmployeeID}}\",\r\n  \"emp_firstname\": \"angg\",\r\n  \"emp_lastname\": \"yungg\",\r\n  \"emp_middle_name\": \"srty\",\r\n  \"emp_gender\": \"1\",\r\n  \"emp_birthday\": \"2020-09-08\",\r\n  \"emp_status\": \"Seasonal\",\r\n  \"emp_job_title\": \"Cloud Consultant\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}{{updateEmployee}}",
+					"host": [
+						"{{baseUrl}}{{updateEmployee}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteEmployee",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d4113b85-7059-4169-af87-b3b0e79f6093",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}{{deleteEmployee}}?employee_id={{CreatedEmployeeID}}",
+					"host": [
+						"{{baseUrl}}{{deleteEmployee}}"
+					],
+					"query": [
+						{
+							"key": "employee_id",
+							"value": "{{CreatedEmployeeID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkthedeletedemployeeisnotthere",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "34ab4d5e-2bf5-4c9b-965c-fa1cea55039e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}{{getOne employee}}?employee_id={{CreatedEmployeeID}}",
+					"host": [
+						"{{baseUrl}}{{getOne employee}}"
+					],
+					"query": [
+						{
+							"key": "employee_id",
+							"value": "{{CreatedEmployeeID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
